@@ -32,8 +32,15 @@ class Tests(unittest.TestCase):
     def test_graduation(self):
         L = {"insight": 4, "evidence": 3, "clarity": 3}
         O = {"automation": 3, "reliability": 3, "cost_awareness": 3}
-        steps = [("niche", L, None), ("landing", None, {"visitors": 100}), ("pricing", L, None), ("seo", L, None),
-                 ("social", None, {"followers_gained": 50}), ("checkout", None, {"signups": 10}), ("agents", O, None)]
+        steps = [
+            ("niche", L, None),
+            ("landing", None, {"visitors": 100}),
+            ("pricing", L, None),
+            ("seo", L, None),
+            ("social", None, {"followers_gained": 50}),
+            ("checkout", None, {"signups": 10}),
+            ("agents", O, None),
+        ]
         for lesson, lv, m in steps:
             self.assertTrue(self.school.submit(self.s, lesson, lv, m)["passed"], lesson)
         self.assertFalse(self.school.graduate(self.s)["graduated"])

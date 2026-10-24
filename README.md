@@ -1,5 +1,7 @@
 # internet-business-school
 
+[![CI](https://github.com/eliem08/internet-business-school/actions/workflows/ci.yml/badge.svg)](https://github.com/eliem08/internet-business-school/actions/workflows/ci.yml)
+
 > **Harvard Business School for internet businesses** — a real education in building online.
 
 MBA programmes teach you to run a Fortune 500 division. Nobody teaches how
@@ -34,3 +36,25 @@ internet-business-school demo
 - Cohorts, live case discussions, peer grading with calibration
 - Verified metrics via Stripe / Plausible / Search Console OAuth
 - Alumni deal flow (pairs with solo-combinator)
+
+## Development
+
+Zero runtime dependencies; Python 3.10+.
+
+```bash
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+python -m unittest discover -s tests -t .           # unit + CLI smoke tests
+ruff check . && ruff format --check .               # lint + format
+```
+
+```
+internet_business_school/core.py       domain logic (pure, importable, fully tested)
+internet_business_school/__main__.py   CLI (`internet-business-school ...` / `python -m internet_business_school ...`)
+tests/                unit tests + generated CLI smoke tests
+```
+
+CI runs lint and tests on Ubuntu and Windows across Python 3.10, 3.12 and 3.13.
+Design, data model, trade-offs and production path: **[ARCHITECTURE.md](ARCHITECTURE.md)**.
+
+Part of the [agent-economy](https://github.com/eliem08/agent-economy) portfolio (idea #26).

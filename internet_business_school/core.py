@@ -1,4 +1,5 @@
 """Curriculum DAG, rubric grading, proof-of-work assignments and graduation."""
+
 from __future__ import annotations
 
 import hashlib
@@ -26,15 +27,35 @@ class Rubric:
 
 
 CURRICULUM = [
-    Lesson("niche", "Foundations", "Finding a niche with demand", case="How a $9/mo Notion template business hit $40k MRR", rubric="analysis"),
+    Lesson(
+        "niche",
+        "Foundations",
+        "Finding a niche with demand",
+        case="How a $9/mo Notion template business hit $40k MRR",
+        rubric="analysis",
+    ),
     Lesson("landing", "Foundations", "Ship a landing page in a day", ("niche",), proof={"visitors": 100}),
-    Lesson("seo", "Distribution", "SEO that compounds", ("landing",), case="Programmatic SEO: 0 to 1M visits", rubric="analysis"),
+    Lesson(
+        "seo",
+        "Distribution",
+        "SEO that compounds",
+        ("landing",),
+        case="Programmatic SEO: 0 to 1M visits",
+        rubric="analysis",
+    ),
     Lesson("social", "Distribution", "Building in public on X", ("landing",), proof={"followers_gained": 50}),
     Lesson("paid", "Distribution", "Paid ads without burning cash", ("landing",), rubric="analysis", required=False),
     Lesson("pricing", "Monetisation", "Pricing a SaaS", ("niche",), case="Why 3 tiers beat 1", rubric="analysis"),
     Lesson("checkout", "Monetisation", "Stripe, trials and dunning", ("pricing", "landing"), proof={"signups": 10}),
     Lesson("agents", "Operations", "Running the company with agents", ("checkout",), rubric="ops"),
-    Lesson("capstone", "Capstone", "First dollar", ("seo", "social", "checkout", "agents"), proof={"revenue_usd": 1}, rubric="ops"),
+    Lesson(
+        "capstone",
+        "Capstone",
+        "First dollar",
+        ("seo", "social", "checkout", "agents"),
+        proof={"revenue_usd": 1},
+        rubric="ops",
+    ),
 ]
 RUBRICS = {
     "analysis": Rubric("analysis", {"insight": 0.4, "evidence": 0.35, "clarity": 0.25}),
@@ -78,7 +99,9 @@ class School:
         self.rubrics = rubrics or RUBRICS
 
     def unlocked(self, s: Student) -> list[str]:
-        return [k for k in self.order if k not in s.completed and all(p in s.completed for p in self.lessons[k].prereqs)]
+        return [
+            k for k in self.order if k not in s.completed and all(p in s.completed for p in self.lessons[k].prereqs)
+        ]
 
     def next_lesson(self, s: Student) -> str | None:
         options = self.unlocked(s)
