@@ -48,6 +48,21 @@ class Tests(unittest.TestCase):
         g = self.school.graduate(self.s)
         self.assertTrue(g["graduated"])
         self.assertEqual(len(g["certificate_id"]), 20)
+        self.assertTrue(self.school.verify_certificate("s", self.s.grades, g["certificate_id"]))
+        self.assertFalse(self.school.verify_certificate("s", {**self.s.grades, "capstone": 4.0}, g["certificate_id"]))
+
+    def test_certificates_cannot_be_minted_from_the_public_formula(self):
+        import hashlib
+
+        grades = {"capstone": 4.0, "niche": 4.0}
+        forged = hashlib.sha256(f"mallory|{sorted(grades.items())}".encode()).hexdigest()[:20]
+        self.assertFalse(self.school.verify_certificate("mallory", grades, forged))
+        self.assertFalse(School(key=b"other").verify_certificate("s", grades, self.school._sign("s", grades)))
+
+    def test_nan_metrics_do_not_satisfy_proof_of_work(self):
+        self.school.submit(self.s, "niche", {"insight": 4, "evidence": 4, "clarity": 4})
+        r = self.school.submit(self.s, "landing", metrics={"visitors": float("nan")})
+        self.assertFalse(r["passed"])
 
 
 if __name__ == "__main__":

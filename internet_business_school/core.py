@@ -3,6 +3,10 @@
 from __future__ import annotations
 
 import hashlib
+import hmac
+import math
+import os
+import secrets
 from dataclasses import dataclass, field
 
 __all__ = ["Lesson", "Rubric", "CURRICULUM", "RUBRICS", "Student", "School", "topo_order"]
@@ -93,7 +97,9 @@ class Student:
 
 
 class School:
-    def __init__(self, lessons: list[Lesson] | None = None, rubrics: dict | None = None):
+    def __init__(self, lessons: list[Lesson] | None = None, rubrics: dict | None = None, key: bytes | None = None):
+        # certificates are HMAC-signed so only the school can mint one; never a guessable default key
+        self.key = key or (os.environ.get("IBS_CERT_KEY") or secrets.token_hex(32)).encode()
         self.lessons = {l.key: l for l in (lessons or CURRICULUM)}
         self.order = topo_order(list(self.lessons.values()))
         self.rubrics = rubrics or RUBRICS
@@ -125,7 +131,7 @@ class School:
         if l.proof:
             for metric, minimum in l.proof.items():
                 got = (metrics or {}).get(metric, 0)
-                if got < minimum:
+                if not (isinstance(got, (int, float)) and math.isfinite(got)) or got < minimum:  # nan < x is False
                     result["passed"] = False
                     result["notes"].append(f"{metric} {got} < required {minimum}")
         grade = None
@@ -148,6 +154,13 @@ class School:
         ok = not missing and avg >= 3.0
         out = {"graduated": ok, "average": round(avg, 2), "missing": missing}
         if ok:
-            payload = f"{s.name}|{sorted(s.grades.items())}".encode()
-            out["certificate_id"] = hashlib.sha256(payload).hexdigest()[:20]
+            out["certificate_id"] = self._sign(s.name, s.grades)
         return out
+
+    def _sign(self, name: str, grades: dict) -> str:
+        payload = f"{name}|{sorted(grades.items())}".encode()
+        return hmac.new(self.key, payload, hashlib.sha256).hexdigest()[:20]
+
+    def verify_certificate(self, name: str, grades: dict, certificate_id: str) -> bool:
+        """True only for a certificate this school issued for exactly this student and transcript."""
+        return hmac.compare_digest(self._sign(name, grades), str(certificate_id))
