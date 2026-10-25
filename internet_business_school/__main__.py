@@ -27,11 +27,16 @@ def demo():
     print(school.graduate(s))
 
 
-def _run(argv=None):
+def build_parser():
     ap = argparse.ArgumentParser(prog="internet-business-school")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("curriculum")
     sub.add_parser("demo")
+    return ap
+
+
+def _run(argv=None):
+    ap = build_parser()
     a = ap.parse_args(argv)
     if a.cmd == "demo":
         demo()

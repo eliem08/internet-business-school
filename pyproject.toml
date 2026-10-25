@@ -23,6 +23,7 @@ dev = ["ruff>=0.6"]
 
 [project.scripts]
 internet-business-school = "internet_business_school.__main__:main"
+internet-business-school-web = "internet_business_school.web:main"
 
 [project.urls]
 Repository = "https://github.com/eliem08/internet-business-school"

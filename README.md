@@ -21,6 +21,18 @@ internet-business-school curriculum
 internet-business-school demo
 ```
 
+## Web app and API
+
+Every command is also a JSON API endpoint and a browser form, served by the built-in web app.
+
+```bash
+internet-business-school-web --port 8000          # then open http://127.0.0.1:8000
+docker build -t internet-business-school . && docker run -p 8000:8000 -v internet-business-school-data:/data internet-business-school
+```
+
+Endpoints: `POST /api/curriculum`, `POST /api/demo`, plus `GET /healthz` and `GET /api/spec` (machine-readable field list).
+Files are sent as `{"name": ..., "content": ...}`, folders as `{"files": [...]}` or a base64 zip.
+
 ## Pricing
 
 Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless noted.
