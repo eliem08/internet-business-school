@@ -1,4 +1,4 @@
-"""Harvard Business School for internet businesses: a real education in building online."""
+"""Internet Business School: A real education in building an online business, graded on what you ship."""
 
 from .core import *
 
