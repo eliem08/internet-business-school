@@ -46,7 +46,7 @@ Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless
 | **Cohort host** | $299 per month | Run your own cohort; Custom lessons and rubrics; Student dashboard |
 | **Academy** | $999 per month | White label; Unlimited students; Priority support |
 
-To start a trial or buy a plan, email **sales@YOUR-DOMAIN.com**.
+To start a trial or buy a plan, [request access](https://github.com/eliem08/internet-business-school/issues/new?title=Internet%20Business%20School%20trial&labels=sales).
 
 ## Licence
 
