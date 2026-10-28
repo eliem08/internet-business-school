@@ -47,10 +47,10 @@ To sell self-serve, set four variables and point a Stripe webhook at `https://<y
 |---|---|
 | `STRIPE_SECRET_KEY` | `sk_live_...` |
 | `STRIPE_WEBHOOK_SECRET` | `whsec_...` |
-| `STRIPE_PRICES` | `team=price_123,business=price_456` |
+| `STRIPE_PRICES` | `student=price_123,cohort-host=price_456,academy=price_789` |
 | `PUBLIC_URL` | `https://internet-business-school.example.com` |
 
-Buyers pick a plan on `/pricing`, pay on Stripe Checkout and see their API key once on the success page. Cancelling the subscription revokes the key. A selling server always requires a key.
+Buyers pick a plan on `/pricing`, pay on Stripe Checkout and see their API key once on the success page. Monthly plans start with a 14-day free trial. Cancelling the subscription revokes the key. A selling server always requires a key. Copy `.env.example` to `.env` and fill in real values (never commit `.env`).
 
 ## Pricing
 
@@ -59,8 +59,10 @@ Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless
 | Plan | Price | Includes |
 |---|---|---|
 | **Student** | $29 per month | Full curriculum; Graded assignments; Signed certificate |
-| **Cohort host** | $299 per month | Run your own cohort; Custom lessons and rubrics; Student dashboard |
-| **Academy** | $999 per month | White label; Unlimited students; Priority support |
+| **Cohort host** | $299 per month | Everything in Student |
+| **Academy** | $999 per month | Everything in Student |
+
+In this release all plans unlock the same software; higher tiers add licence scope and support, not gated features. Cohort hosting, custom lessons and rubrics, student dashboards, and white label are on the Roadmap below, not in this release.
 
 To start a trial or buy a plan, [request access](https://github.com/eliem08/internet-business-school/issues/new?title=Internet%20Business%20School%20trial&labels=sales).
 
@@ -92,6 +94,7 @@ internet-business-school demo
 ## Roadmap
 
 - Cohorts, live case discussions, peer grading with calibration
+- Cohort hosting with custom lessons, rubrics and student dashboards; white-label Academy
 - Verified metrics via Stripe / Plausible / Search Console OAuth
 - Alumni deal flow (pairs with solo-combinator)
 

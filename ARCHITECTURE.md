@@ -33,11 +33,13 @@ classDiagram
 - **Electives don't block graduation**, and `next_lesson` prefers required lessons.
 - **The curriculum is validated at load** (fail fast on bad prerequisites), not at submit time.
 
-## 5. Production architecture
-An LMS service (Postgres: cohorts, lessons, submissions, grades with grader IDs). A metric
-verifier pulls Stripe, Plausible and Search Console via OAuth, with student consent. Peer grading
-assigns 3 graders and uses calibration essays to weight grader reliability. Certificates are
-public verification pages.
+## 5. Future production architecture (not shipped)
+The following is the production direction, not this release: an LMS service (Postgres: cohorts,
+lessons, submissions, grades with grader IDs). A metric verifier pulls Stripe, Plausible and
+Search Console via OAuth, with student consent. Peer grading assigns 3 graders and uses
+calibration essays to weight grader reliability. Certificates are public verification pages.
+This release validates and grades locally only; it runs no cohorts, no peer grading, and no
+verified-metric OAuth.
 
 ## 6. Risks
 Metric fraud (verified sources only for proof-of-work). Grade inflation (calibrated peer grading
