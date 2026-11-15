@@ -4,6 +4,37 @@
   "payload": {}
  },
  {
+  "op": "enroll",
+  "payload": {
+   "name": "Sam Lee"
+  }
+ },
+ {
+  "op": "submit",
+  "payload": {
+   "name": "Sam Lee",
+   "lesson": "niche",
+   "level": [
+    "insight=4",
+    "evidence=3",
+    "clarity=3"
+   ],
+   "evidence": ""
+  }
+ },
+ {
+  "op": "progress",
+  "payload": {
+   "name": "Sam Lee"
+  }
+ },
+ {
+  "op": "graduate",
+  "payload": {
+   "name": "Sam Lee"
+  }
+ },
+ {
   "op": "demo",
   "payload": {}
  }

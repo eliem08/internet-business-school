@@ -18,7 +18,8 @@ Customers receive a release archive with the wheel and the examples. Python 3.10
 ```bash
 pip install internet_business_school-0.1.0-py3-none-any.whl
 internet-business-school curriculum
-internet-business-school demo
+internet-business-school enroll "Sam Lee" --store school.json
+internet-business-school submit "Sam Lee" niche --level insight=4 --level evidence=3 --level clarity=3 --store school.json
 ```
 
 ## Web app and API
@@ -33,7 +34,7 @@ docker build -t internet-business-school . && docker run -p 8000:8000 -e API_KEY
 
 Every API call needs `Authorization: Bearer <key>` once any key exists; a server on a public address refuses to start without one. Calls are rate-limited per key (60/min, `--rate`) and metered: `internet-business-school-web usage` prints calls per key for billing.
 
-Endpoints: `POST /api/curriculum`, `POST /api/demo`, plus `GET /healthz` and `GET /api/spec` (machine-readable field list).
+Endpoints: `POST /api/curriculum`, `POST /api/demo`, `POST /api/enroll`, `POST /api/submit`, `POST /api/progress`, `POST /api/graduate`, `POST /api/verify`, plus `GET /healthz` and `GET /api/spec` (machine-readable field list).
 Files are sent as `{"name": ..., "content": ...}`, folders as `{"files": [...]}` or a base64 zip.
 
 ## Deploy and sell
