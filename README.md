@@ -9,7 +9,7 @@
 
 **The problem:** Online business courses reward watching videos, not shipping, so students finish with certificates and no business.
 
-**What you get:** A prerequisite-ordered curriculum, rubric grading, proof-of-work assignments with real metrics, and signed graduation certificates.
+**What you get:** A prerequisite-ordered curriculum, rubric grading, proof-of-work assignments graded on the numbers students report with a link to the work, and signed graduation certificates.
 
 ## Quickstart
 
