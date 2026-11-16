@@ -55,15 +55,18 @@ Buyers pick a plan on `/pricing`, pay on Stripe Checkout and see their API key o
 
 ## Pricing
 
-Every plan starts with a 14-day free trial. Prices in USD, billed monthly unless noted.
+Monthly plans start with a 14-day free trial. Prices in USD, billed monthly unless noted.
 
 | Plan | Price | Includes |
 |---|---|---|
 | **Student** | $29 per month | Full curriculum; Graded assignments; Signed certificate |
-| **Cohort host** | $299 per month | Run your own cohort; Custom lessons and rubrics; Student dashboard |
-| **Academy** | $999 per month | White label; Unlimited students; Priority support |
+| **Cohort host** | $299 per month | Run your own cohort; Student progress view; Verifiable certificates |
+| **Academy** | $999 per month | Unlimited students; Self-hosted deployment; Priority support |
 
 To start a trial or buy a plan, [request access](https://github.com/eliem08/internet-business-school/issues/new?title=Internet%20Business%20School%20trial&labels=sales).
+
+Plan note: every plan runs the same software, and every API key unlocks all of it. Seat, agent and volume
+limits are licence terms; the code does not enforce them. Support, SLA and done-for-you items are services.
 
 ## Licence
 
