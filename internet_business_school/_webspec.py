@@ -214,4 +214,24 @@ SPEC = {
             "id": "verify",
         },
     ],
+    "plans": [
+        {
+            "key": "student",
+            "name": "Student",
+            "price": "$29 per month",
+            "features": ["Full curriculum", "Graded assignments", "Signed certificate"],
+        },
+        {
+            "key": "cohort-host",
+            "name": "Cohort host",
+            "price": "$299 per month",
+            "features": ["Run your own cohort", "Student progress view", "Verifiable certificates"],
+        },
+        {
+            "key": "academy",
+            "name": "Academy",
+            "price": "$999 per month",
+            "features": ["Unlimited students", "Self-hosted deployment", "Priority support"],
+        },
+    ],
 }
